@@ -67,6 +67,14 @@ app.get("/posts/:postId", function(req, res){
   });
 });
 
+app.get("/delete/:postId", function(req, res) {
+  const idToDelete = req.params.postId;
+
+  Post.deleteOne({_id: idToDelete}).then(function() {
+    res.redirect("/");
+  });
+})
+
 app.listen(3000, function() {
   console.log("Server started on port 3000");
 });
